@@ -52,5 +52,6 @@ jobs:
         
       - name: Check availability index html
         run: | 
-          curl https://devops-test-for-alpacked.s3.eu-west-3.amazonaws.com/index.html
+          curl "https://${{env.AWS_BUCKET_NAME}}.s3.${{AWS_REGION_NAME}}.amazonaws.com/index.html"
           echo "Test Complete"
+          echo ${{ GITHUB_REF }}
