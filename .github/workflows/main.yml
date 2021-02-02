@@ -54,4 +54,3 @@ jobs:
         run: | 
           curl "https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION_NAME}}.amazonaws.com/index.html"
           echo "Test Complete"
-          echo ${{ GITHUB_REF }}
