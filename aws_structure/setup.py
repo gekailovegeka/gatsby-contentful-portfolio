@@ -20,6 +20,12 @@ setuptools.setup(
 
     install_requires=[
         "aws-cdk.core==1.87.1",
+        "aws-cdk.aws_s3",
+        "aws-cdk.aws_ec2",
+        "aws-cdk.aws_iam",
+        "aws-cdk.aws_dynamodb",
+        "aws-cdk.aws_cloudfront"
+        
     ],
 
     python_requires=">=3.6",
