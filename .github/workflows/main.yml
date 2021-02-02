@@ -30,11 +30,17 @@ jobs:
      
       - name: Deploy
         run: |
+          npm install
           
-          echo "Delivered to S3 Bucket"
+          npm run setup -- --spaceId ${{ secrets.GATSBY_SPACEID }} \
+          --managementToken ${{ secrets.GATSBY_MANAGEMENT_TOKEN }} \
+          --accessToken ${{ secrets.GATSBY_ACCESS_TOKEN }}
+          npx gatsby build
+          
+          echo "Build Complete"
       - name: Deliver
         run: |
-          aws s3 sync . s3://${{ env.AWS_BUCKET_NAME}}
+          aws s3 sync public s3://${{ env.AWS_BUCKET_NAME}}
           echo "Delivered to S3 Bucket"
   test:
 
