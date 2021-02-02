@@ -9,7 +9,8 @@ from aws_cdk import (
     aws_dynamodb as dynamodb
 )
 AWS_BUCKET_NAME = 'devops-test-for-alpacked'
-AWS_CLOUDFRONT_NAME = 'devops-test-for-alpacked'
+AWS_CLOUDFRONT_NAME = 'devops-test-for-alpacked-Distribution'
+
 from aws_structure.aws_structure_stack import AwsStructureStack
 class TestStack(core.Stack):
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
@@ -21,7 +22,11 @@ class TestStack(core.Stack):
         access_control=s3.BucketAccessControl.PUBLIC_READ)
         my_bucket.grant_public_access()
         #Create Cloudfront 
-       
+        distribution = cloudfront.CloudFrontWebDistribution(self, AWS_CLOUDFRONT_NAME,
+        origin_configs=[cloudfront.SourceConfiguration(
+        s3_origin_source=cloudfront.S3OriginConfig(
+            s3_bucket_source=my_bucket),
+        behaviors=[cloudfront.Behavior(is_default_behavior=True)])])
 
         
         
